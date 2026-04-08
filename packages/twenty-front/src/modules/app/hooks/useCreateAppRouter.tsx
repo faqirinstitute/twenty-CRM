@@ -100,6 +100,12 @@ const NotFound = lazy(() =>
   })),
 );
 
+const HomePage = lazy(() =>
+  import('~/pages/home/HomePage').then((module) => ({
+    default: module.HomePage,
+  })),
+);
+
 export const useCreateAppRouter = (
   isFunctionSettingsEnabled?: boolean,
   isAdminPageEnabled?: boolean,
@@ -204,6 +210,14 @@ export const useCreateAppRouter = (
             }
           />
           <Route path={indexAppPath.getIndexAppPath()} element={<></>} />
+          <Route
+            path={AppPath.HomePage}
+            element={
+              <LazyRoute>
+                <HomePage />
+              </LazyRoute>
+            }
+          />
           <Route
             path={AppPath.RecordIndexPage}
             element={

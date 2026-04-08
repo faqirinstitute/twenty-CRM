@@ -2,9 +2,12 @@ import { NavigationDrawerOpenedSection } from '@/navigation-menu-item/display/se
 import { NavigationDrawerWorkspaceSectionSkeletonLoader } from '@/object-metadata/components/NavigationDrawerWorkspaceSectionSkeletonLoader';
 
 import { NavigationDrawerOtherSection } from '@/navigation/components/NavigationDrawerOtherSection';
+import { NavigationDrawerItem } from '@/ui/navigation/navigation-drawer/components/NavigationDrawerItem';
 import { styled } from '@linaria/react';
+import { useLingui } from '@lingui/react/macro';
 import { lazy, Suspense } from 'react';
-
+import { AppPath } from 'twenty-shared/types';
+import { IconHome } from 'twenty-ui/display';
 import { themeCssVariables } from 'twenty-ui/theme-constants';
 
 const FavoritesSectionDispatcher = lazy(() =>
@@ -30,8 +33,15 @@ const StyledScrollableItemsContainer = styled.div`
 `;
 
 export const MainNavigationDrawerScrollableItems = () => {
+  const { t } = useLingui();
+
   return (
     <StyledScrollableItemsContainer>
+      <NavigationDrawerItem
+        label={t`Home`}
+        to={AppPath.HomePage}
+        Icon={IconHome}
+      />
       <NavigationDrawerOpenedSection />
       <Suspense fallback={<NavigationDrawerWorkspaceSectionSkeletonLoader />}>
         <FavoritesSectionDispatcher />

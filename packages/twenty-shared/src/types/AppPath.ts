@@ -18,6 +18,7 @@ export enum AppPath {
 
   // Onboarded
   Index = '/',
+  HomePage = '/home',
   TasksPage = '/objects/tasks',
   OpportunitiesPage = '/objects/opportunities',
 
